@@ -26,11 +26,11 @@ export default function ProductGrid({ products, loading }: ProductGridProps) {
           <CardContent className="p-0 relative">
             <Link href={`/products/${product.id}`}>
               <Image
-                src={product.img}
+                src={product.img[0]}
                 alt={product.name}
                 width={300}
                 height={300}
-                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300" />
             </Link>
@@ -40,7 +40,7 @@ export default function ProductGrid({ products, loading }: ProductGridProps) {
               href={`/products/${product.id}`}
               className="hover:text-purple-600 transition-colors"
             >
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              <h2 className="text-sm truncate w-[100%] font-semibold text-gray-800 mb-2">
                 {product.name}
               </h2>
             </Link>

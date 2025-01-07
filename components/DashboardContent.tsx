@@ -16,38 +16,24 @@ import {
 } from "@/components/ui/card";
 import ProductList from "./ProductList";
 import { Loader2 } from "lucide-react";
-
-interface NewProduct {
-  name: string;
-  description: string;
-  price: string;
-  image: string;
-}
-
-interface Products {
-  name: string;
-  desc: string;
-  price: string;
-  image: string;
-}
+import { api } from "@/lib/utils";
 
 export default function DashboardContent() {
   const [showAddProduct, setShowAddProduct] = useState(false);
-  const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [spec, setSpec] = useState<string>("");
+  const [feature, setFeature] = useState<string>("");
+  const [image, setImage] = useState<string>("");
 
   const router = useRouter();
 
   async function verifyAdminStatus() {
     setLoading(true);
     try {
-      const getUser = await axios.get(
-        "http://localhost:4001/api/auth/get-auth",
-        { withCredentials: true }
-      );
+      const getUser = await api.get("/api/auth/get-auth");
       const isAdmin = getUser.data?.user?.isAdmin;
       if (isAdmin !== true) {
-        console.log("user is not admin, cant acess route");
+        console.log("user is not admin, cant access route");
         return router.push("/");
       }
     } catch (error) {
@@ -57,17 +43,6 @@ export default function DashboardContent() {
     }
   }
 
-  // async function getProducts() {
-  //   try {
-  //     const response = await axios.get("http://localhost:4001/api/products");
-  //     if (response.status === 200) {
-  //       setProducts(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.log("something went wrong unable to fetch product:", error);
-  //   }
-  // }
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -76,34 +51,29 @@ export default function DashboardContent() {
     const name = formData.get("name") as string;
     const desc = formData.get("desc") as string;
     const price = Number(formData.get("price"));
-    const img = formData.get("image") as string;
+    const img = image.split(",").map((tag) => tag.trim());
+    const specs = spec.split(",").map((tag) => tag.trim());
+    const features = feature.split(",").map((tag) => tag.trim());
 
     const data = {
       name,
       desc,
       price,
       img,
+      specs,
+      features,
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:4001/api/products/add-product",
-        data,
-        { withCredentials: true }
-      );
+      const response = await api.post("/api/products/add-product", data);
       if (response.status === 201) return console.log(response.data);
     } catch (error) {
       console.log(error);
     }
-
-    // Here you would typically send the data to your backend
-    // setShowAddProduct(false);
-    // setNewProduct({ name: "", description: "", price: "", image: "" });
   };
 
   useEffect(() => {
     verifyAdminStatus();
-    // getProducts();
   }, []);
 
   if (loading)
@@ -162,8 +132,32 @@ export default function DashboardContent() {
                 <Input id="price" name="price" type="number" required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="image">Image URL</Label>
-                <Input id="image" name="image" type="text" required />
+                <Label htmlFor="specs">Specs (comma-separated)</Label>
+                <Input
+                  id="specs"
+                  onChange={(event) => setSpec(event.target.value)}
+                  type="text"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="feature">features (comma-separated)</Label>
+                <Input
+                  id="features"
+                  onChange={(event) => setFeature(event.target.value)}
+                  type="text"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="image">Image URLS (comma-separated)</Label>
+                <Input
+                  id="image"
+                  onChange={(event) => setImage(event.target.value)}
+                  name="image"
+                  type="text"
+                  required
+                />
               </div>
             </CardContent>
             <CardFooter>

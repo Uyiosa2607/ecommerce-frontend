@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import EditProductForm from "./EditProductForm";
+import { api } from "@/lib/utils";
 
 interface Product {
   id: number;
@@ -36,10 +37,7 @@ export default function ProductList() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:4001/api/products/remove?product=${id}`,
-        { withCredentials: true }
-      );
+      const response = await api.delete(`/api/products/remove?product=${id}`);
       if (response.status === 200) {
         setProducts(products.filter((product) => product.id !== id));
       }
@@ -77,11 +75,11 @@ export default function ProductList() {
           <Card key={product.id} className="overflow-hidden">
             <CardContent className="p-4">
               <Image
-                src={product.img}
+                src={product.img[0]}
                 alt={product.name}
                 width={300}
                 height={300}
-                className="w-full h-48 object-cover mb-4"
+                className="w-full h-[200px] object-cover mb-4"
               />
               <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
               <p className="text-gray-600 mb-2">{product.desc}</p>

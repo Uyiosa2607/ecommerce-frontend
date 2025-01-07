@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DashboardContent from "@/components/DashboardContent";
 import { useRouter } from "next/navigation";
+import { api } from "@/lib/utils";
 
 export default function DashboardPage() {
   const [auth, setAuth] = useState<boolean>(false);
@@ -15,7 +16,7 @@ export default function DashboardPage() {
   async function getAuthStatus() {
     try {
       setLoading(true);
-      const response = await axios.get(
+      const response = await api.get(
         "http://localhost:4001/api/auth/get-auth",
         { withCredentials: true }
       );

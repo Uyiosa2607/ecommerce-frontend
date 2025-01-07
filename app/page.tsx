@@ -6,41 +6,6 @@ import SlidableBanner from "@/components/SlidableBanner";
 import ProductGrid from "@/components/ProductGrid";
 import Footer from "@/components/Footer";
 
-// const products = [
-//   {
-//     id: 1,
-//     name: "Smartphone X",
-//     price: 799,
-//     image: "/placeholder.svg?height=300&width=300",
-//   },
-//   {
-//     id: 2,
-//     name: "Laptop Pro",
-//     price: 1299,
-//     image: "/placeholder.svg?height=300&width=300",
-//   },
-//   {
-//     id: 3,
-//     name: "Tablet Ultra",
-//     price: 499,
-//     image: "/placeholder.svg?height=300&width=300",
-//   },
-//   {
-//     id: 4,
-//     name: "Smartwatch Y",
-//     price: 299,
-//     image: "/placeholder.svg?height=300&width=300",
-//   },
-// ];
-
-// interface Product {
-//   name: string;
-//   img: string;
-//   price: number;
-//   isNew: boolean;
-//   id: string;
-// }
-
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);

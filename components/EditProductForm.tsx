@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import axios from "axios";
+import { api } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -17,7 +17,9 @@ interface Product {
   name: string;
   desc: string;
   price: number;
-  img: string;
+  img: string[];
+  specs: string[];
+  features: string[];
 }
 
 interface EditProductFormProps {
@@ -32,6 +34,11 @@ export default function EditProductForm({
   onCancel,
 }: EditProductFormProps) {
   const [editedProduct, setEditedProduct] = useState<Product>(product);
+  const [feature, setFeature] = useState<string>(
+    editedProduct.features.join(", ")
+  );
+  const [spec, setSpecs] = useState<string>(editedProduct.specs.join(", "));
+  const [image, setImage] = useState<string>(editedProduct.img.join(", "));
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,20 +46,23 @@ export default function EditProductForm({
     const name = formData.get("name") as string;
     const desc = formData.get("desc") as string;
     const price = Number(formData.get("price"));
-    const img = formData.get("image") as string;
+    const img = image.split(",").map((tag) => tag.trim());
+    const specs = spec.split(",").map((tag) => tag.trim());
+    const features = feature.split(",").map((tag) => tag.trim());
 
     const data = {
       name,
       desc,
       price,
       img,
+      specs,
+      features,
     };
 
     try {
-      const response = await axios.patch(
-        `http://localhost:4001/api/products/${editedProduct.id}`,
-        data,
-        { withCredentials: true }
+      const response = await api.patch(
+        `/api/products/${editedProduct.id}`,
+        data
       );
       console.log(response);
     } catch (error) {
@@ -96,12 +106,33 @@ export default function EditProductForm({
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="image">Image URL</Label>
+            <Label htmlFor="specs">Specs (comma-separated)</Label>
+            <Input
+              id="specs"
+              onChange={(event) => setSpecs(event.target.value)}
+              type="text"
+              defaultValue={editedProduct.specs.join(", ")}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="feature">Features (comma-separated)</Label>
+            <Input
+              id="features"
+              onChange={(event) => setFeature(event.target.value)}
+              type="text"
+              defaultValue={editedProduct.features.join(", ")}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="image">Image URLS (comma-separated)</Label>
             <Input
               id="image"
               name="image"
               type="text"
-              defaultValue={editedProduct.img}
+              onChange={(event) => setImage(event.target.value)}
+              defaultValue={editedProduct.img.join(", ")}
               required
             />
           </div>
