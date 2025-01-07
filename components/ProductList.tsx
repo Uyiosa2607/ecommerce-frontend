@@ -52,10 +52,7 @@ export default function ProductList() {
     setEditingProduct(product);
   };
 
-  const handleSave = (updatedProduct: Product) => {
-    setProducts(
-      products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
-    );
+  const handleSave = () => {
     setEditingProduct(null);
   };
 

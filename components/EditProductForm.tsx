@@ -25,7 +25,7 @@ interface Product {
 
 interface EditProductFormProps {
   product: Product;
-  onSave: (updatedProduct: Product) => void;
+  onSave: () => void;
   onCancel: () => void;
 }
 
@@ -65,7 +65,7 @@ export default function EditProductForm({
         `/api/products/${editedProduct.id}`,
         data
       );
-      console.log(response);
+      if (response.status === 200) return onSave();
     } catch (error) {
       console.log(error);
     }

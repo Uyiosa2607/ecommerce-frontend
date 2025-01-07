@@ -65,7 +65,10 @@ export default function DashboardContent() {
 
     try {
       const response = await api.post("/api/products/add-product", data);
-      if (response.status === 201) return console.log(response.data);
+      if (response.status === 201) {
+        console.log(response);
+        return setShowAddProduct(false);
+      }
     } catch (error) {
       console.log(error);
     }
