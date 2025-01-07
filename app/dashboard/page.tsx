@@ -16,10 +16,9 @@ export default function DashboardPage() {
   async function getAuthStatus() {
     try {
       setLoading(true);
-      const response = await api.get(
-        "http://localhost:4001/api/auth/get-auth",
-        { withCredentials: true }
-      );
+      const response = await api.get("/api/auth/get-auth", {
+        withCredentials: true,
+      });
       if (response.status === 200) {
         setAuth(true);
         return;

@@ -14,7 +14,9 @@ export default function Home() {
   async function getProducts() {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4001/api/products");
+      const response = await axios.get(
+        "https://shopping-backend-server.onrender.com/api/products"
+      );
       if (response.status === 200) {
         setProducts(response.data);
         return setLoading(false);
