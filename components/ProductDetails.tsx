@@ -12,38 +12,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Minus, Plus, ShoppingCart, Heart, Share2 } from "lucide-react";
 
-// const product = {
-//   id: '1',
-//   name: 'Smartphone X',
-//   price: 799,
-//   rating: 4.5,
-//   reviews: 128,
-//   description: 'Experience the future of mobile technology with our latest flagship device. The Smartphone X combines cutting-edge features with sleek design, offering unparalleled performance and style.',
-//   features: [
-//     '6.7-inch Super Retina XDR OLED display',
-//     'A15 Bionic chip for lightning-fast performance',
-//     'Pro-level triple-camera system with night mode',
-//     '5G capable for ultra-fast downloads and streaming',
-//     'All-day battery life with fast charging capability'
-//   ],
-//   specs: {
-//     'Display': '6.7-inch OLED',
-//     'Processor': 'A15 Bionic',
-//     'RAM': '6GB',
-//     'Storage': '128GB, 256GB, 512GB',
-//     'Rear Camera': 'Triple 12MP',
-//     'Front Camera': '12MP TrueDepth',
-//     'Battery': '3687 mAh'
-//   },
-//   images: [
-//     '/placeholder.svg?height=600&width=600',
-//     '/placeholder.svg?height=600&width=600&text=Image 2',
-//     '/placeholder.svg?height=600&width=600&text=Image 3',
-//     '/placeholder.svg?height=600&width=600&text=Image 4'
-//   ],
-//   colors: ['Midnight', 'Starlight', 'Blue', 'Pink']
-// }
-
 interface Product {
   name: string;
   id: string;

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ShoppingCart, Search, Menu } from "lucide-react";
+import { ShoppingCart, Search, Menu, CircleUser, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -43,9 +43,8 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled || !isHomePage ? "text-gray-800" : "text-white"
-            }`}
+            className="text-2xl font-bold transition-colors duration-300 
+            text-gray-800"
           >
             TechMinimal
           </Link>
@@ -97,6 +96,15 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
+            <Button variant="ghost" size="icon" asChild className="relative">
+              <Link href="/cart">
+                <User
+                  className={`h-5 w-5 transition-colors duration-300 ${
+                    isScrolled || !isHomePage ? "text-gray-600" : "text-white"
+                  }`}
+                />
+              </Link>
+            </Button>
             <Button variant="ghost" size="icon" asChild className="relative">
               <Link href="/cart">
                 <ShoppingCart
