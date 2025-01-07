@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:4001",
+  baseURL: "https://shopping-backend-server.onrender.com",
   withCredentials: true,
 });
 
@@ -29,7 +29,7 @@ api.interceptors.response.use(
         console.log("403 detected. Attempting token refresh...");
 
         const success = await axios.get(
-          "http://localhost:4001/api/auth/refresh-token",
+          "https://shopping-backend-server.onrender.com/api/auth/refresh-token",
           {
             withCredentials: true,
           }
