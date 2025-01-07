@@ -3,23 +3,41 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ShoppingCart, Search, Menu, CircleUser, User } from "lucide-react";
+import { ShoppingCart, Search, Menu, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { api } from "@/lib/utils";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [admin, setAdmin] = useState<boolean>(false);
   // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
 
+  async function getAuthRole() {
+    try {
+      const response = await api.get("/api/auth/get-auth");
+      const isAdmin = response?.data?.user.isAdmin;
+      if (isAdmin === true) {
+        setAdmin(true);
+      } else {
+        setAdmin(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
+    getAuthRole();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -96,15 +114,32 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" asChild className="relative">
-              <Link href="/cart">
-                <User
-                  className={`h-5 w-5 transition-colors duration-300 ${
-                    isScrolled || !isHomePage ? "text-gray-600" : "text-white"
-                  }`}
-                />
-              </Link>
-            </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="relative"
+                >
+                  <User
+                    className={`h-[20px] w-[20px] transition-colors duration-300 ${
+                      isScrolled || !isHomePage ? "text-gray-600" : "text-white"
+                    }`}
+                  />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="flex flex-col gap-4">
+                  {admin ? (
+                    <Button asChild>
+                      <Link href="/dashboard">Dashboard</Link>
+                    </Button>
+                  ) : null}
+                  <Button variant="destructive">Logout</Button>
+                </div>
+              </PopoverContent>
+            </Popover>
             <Button variant="ghost" size="icon" asChild className="relative">
               <Link href="/cart">
                 <ShoppingCart
