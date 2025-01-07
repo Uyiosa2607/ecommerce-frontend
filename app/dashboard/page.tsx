@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DashboardContent from "@/components/DashboardContent";

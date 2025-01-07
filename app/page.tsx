@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -35,7 +36,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
           Featured Products
         </h2>
-        <ProductGrid loading={loading} products={products} />
+        <ProductGrid products={products} />
       </main>
       <Footer />
     </div>

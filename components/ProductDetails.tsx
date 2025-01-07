@@ -1,3 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,7 +10,7 @@ import { api } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Minus, Plus, ShoppingCart, Heart, Share2, Star } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Heart, Share2 } from "lucide-react";
 
 // const product = {
 //   id: '1',
@@ -50,7 +54,11 @@ interface Product {
   specs: string[];
 }
 
-export default function ProductDetails({ id }: { id: string }) {
+interface PageProps {
+  id: string;
+}
+
+export default function ProductDetails({ id }: PageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   // const [selectedColor, setSelectedColor] = useState(product.colors[0]);
@@ -86,10 +94,9 @@ export default function ProductDetails({ id }: { id: string }) {
         <Card className="overflow-hidden">
           <CardContent className="p-0">
             <div className="relative aspect-square">
-              <Image
+              <img
                 src={product?.img[0]}
                 alt={product?.name}
-                fill
                 className="object-cover"
               />
             </div>

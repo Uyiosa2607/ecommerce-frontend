@@ -14,7 +14,9 @@ interface Product {
   name: string;
   desc: string;
   price: number;
-  img: string;
+  img: string[];
+  features: string[];
+  specs: string[];
 }
 
 export default function ProductList() {
@@ -33,7 +35,7 @@ export default function ProductList() {
       }
     }
     getProducts();
-  });
+  }, []);
 
   const handleDelete = async (id: number) => {
     try {
