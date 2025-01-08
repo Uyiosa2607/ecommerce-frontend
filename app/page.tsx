@@ -19,7 +19,7 @@ export default function Home() {
       );
       if (response.status === 200) {
         setProducts(response.data);
-        // return setLoading(false);
+        return setLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ export default function Home() {
       <Header />
       <SlidableBanner />
       <main className="flex-grow container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-8 text-center">
           Featured Products
         </h2>
         <ProductGrid loading={loading} products={products} />
