@@ -22,9 +22,7 @@ export default function Header() {
 
   async function getAuthRole() {
     try {
-      const response = await api.get("/api/auth/get-auth", {
-        withCredentials: true,
-      });
+      const response = await api.get("/api/auth/get-auth");
       const isAdmin = response?.data?.user.isAdmin;
       if (isAdmin === true) {
         setAdmin(true);

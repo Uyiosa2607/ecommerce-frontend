@@ -27,17 +27,18 @@ api.interceptors.response.use(
       ) {
         originalRequest._retry = true;
         console.log("403 detected. Attempting token refresh...");
-
-        const success = await axios.get(
-          "https://shopping-backend-server.onrender.com/api/auth/refresh-token",
-          {
-            withCredentials: true,
+        try {
+          const success = await axios.get(
+            "https://shopping-backend-server.onrender.com/api/auth/refresh-token",
+            {
+              withCredentials: true,
+            }
+          );
+          if (success.status === 200) {
+            console.log("Tokens were refreshed. Retrying original request...");
+            return api(originalRequest);
           }
-        );
-        if (success.status === 200) {
-          console.log("Tokens were refreshed. Retrying original request...");
-          return api(originalRequest);
-        } else {
+        } catch (error) {
           console.log("Token refresh failed. Redirecting to login.");
           window.location.href = "/login";
           return Promise.reject(error);

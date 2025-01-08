@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function getProducts() {
     setLoading(true);
@@ -19,7 +19,7 @@ export default function Home() {
       );
       if (response.status === 200) {
         setProducts(response.data);
-        return setLoading(false);
+        // return setLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
           Featured Products
         </h2>
-        <ProductGrid products={products} />
+        <ProductGrid loading={loading} products={products} />
       </main>
       <Footer />
     </div>
