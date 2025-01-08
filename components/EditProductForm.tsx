@@ -12,6 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Product {
   id: number;
@@ -40,6 +42,9 @@ export default function EditProductForm({
   );
   const [spec, setSpecs] = useState<string>(editedProduct.specs.join(", "));
   const [image, setImage] = useState<string>(editedProduct.img.join(", "));
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { toast } = useToast();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,13 +66,21 @@ export default function EditProductForm({
     };
 
     try {
+      setLoading(true);
       const response = await api.patch(
         `/api/products/${editedProduct.id}`,
         data
       );
-      if (response.status === 200) return onSave();
+      if (response.status === 200) {
+        toast({
+          description: "product updated successfully....",
+        });
+        return onSave();
+      }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -142,7 +155,10 @@ export default function EditProductForm({
           <Button type="button" variant="outline" onClick={onCancel}>
             Cancel
           </Button>
-          <Button type="submit">Save Changes</Button>
+          <Button disabled={loading} type="submit">
+            Save Changes
+            {loading ? <Loader2 className="w-3 h-3 ml-1 animate-spin" /> : null}
+          </Button>
         </CardFooter>
       </form>
     </Card>

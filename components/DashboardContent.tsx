@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import ProductList from "./ProductList";
 import { Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { api } from "@/lib/utils";
 
 export default function DashboardContent() {
@@ -23,8 +24,10 @@ export default function DashboardContent() {
   const [spec, setSpec] = useState<string>("");
   const [feature, setFeature] = useState<string>("");
   const [image, setImage] = useState<string>("");
+  const [createLoading, setCreateLoading] = useState<boolean>(false);
 
   const router = useRouter();
+  const { toast } = useToast();
 
   async function verifyAdminStatus() {
     setLoading(true);
@@ -64,13 +67,20 @@ export default function DashboardContent() {
     };
 
     try {
+      setCreateLoading(true);
       const response = await api.post("/api/products/add-product", data);
       if (response.status === 201) {
         console.log(response);
-        return setShowAddProduct(false);
+        toast({
+          description: "new product added successfully....",
+        });
+        setShowAddProduct(false);
+        return;
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setCreateLoading(false);
     }
   };
 
@@ -163,7 +173,12 @@ export default function DashboardContent() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button type="submit">Add Product</Button>
+              <Button disabled={createLoading} type="submit">
+                Add Product
+                {createLoading ? (
+                  <Loader2 className="w-3 h-3 ml-1 animate-spin" />
+                ) : null}
+              </Button>
             </CardFooter>
           </form>
         </Card>

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Minus, Plus, ShoppingCart, Heart, Share2 } from "lucide-react";
+import { Skeleton } from "./ui/skeleton";
 
 interface Product {
   name: string;
@@ -31,13 +32,15 @@ export default function ProductDetails({ id }: PageProps) {
   const [quantity, setQuantity] = useState(1);
   // const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function getProduct(id: string) {
     try {
+      setLoading(true);
       const response = await api.get(`/api/products/items?product=${id}`);
       if (response.status === 200) {
         setProduct(response.data);
-        console.log(product);
+        setLoading(false);
         return;
       }
     } catch (error) {
@@ -62,11 +65,19 @@ export default function ProductDetails({ id }: PageProps) {
         <Card className="overflow-hidden">
           <CardContent className="p-0">
             <div className="relative aspect-square">
-              <img
-                src={product?.img[0]}
-                alt={product?.name}
-                className="object-cover"
-              />
+              {loading ? (
+                <Skeleton className="w-full h-full  rounded-xl" />
+              ) : (
+                product && (
+                  <Image
+                    src={product.img[0]}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                    quality={100}
+                  />
+                )
+              )}
             </div>
           </CardContent>
         </Card>
@@ -79,20 +90,28 @@ export default function ProductDetails({ id }: PageProps) {
                 selectedImage === index ? "ring-2 ring-purple-500" : ""
               }`}
             >
-              <Image
-                src={image}
-                alt={`${product.name} - Image ${index + 1}`}
-                fill
-                className="object-cover"
-              />
+              {loading ? (
+                <Skeleton className="w-[100%] h-[100%] rounded-xl" />
+              ) : (
+                <Image
+                  src={image}
+                  alt={`${product.name} - Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              )}
             </button>
           ))}
         </div>
       </div>
       <div className="lg:w-1/3">
-        <h1 className="text-3xl font-bold mb-2 text-gray-800">
-          {product?.name}
-        </h1>
+        {loading ? (
+          <Skeleton className="h-8 w-[70%]" />
+        ) : (
+          <h1 className="text-3xl font-bold mb-2 text-gray-800">
+            {product?.name}
+          </h1>
+        )}
         <div className="flex items-center mb-4">
           <div className="flex items-center">
             {/* {[...Array(5)].map((_, i) => (
@@ -110,9 +129,13 @@ export default function ProductDetails({ id }: PageProps) {
             {/* {product?.rating} ({product.reviews} reviews) */}
           </span>
         </div>
-        <p className="text-3xl font-semibold mb-6 text-purple-600">
-          ${product?.price}
-        </p>
+        {loading ? (
+          <Skeleton className="h-8 mb-2 w-[55%]" />
+        ) : (
+          <p className="text-3xl font-semibold mb-6 text-purple-600">
+            ${product?.price}
+          </p>
+        )}
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-2">Color</h3>
           <div className="flex space-x-2">
@@ -150,6 +173,7 @@ export default function ProductDetails({ id }: PageProps) {
         </div>
         <div className="flex gap-4 mb-8">
           <Button
+            disabled={loading}
             // onClick={handleAddToCart}
             size="lg"
             className="flex-1 bg-purple-600 hover:bg-purple-700"

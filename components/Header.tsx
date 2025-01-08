@@ -14,7 +14,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [admin, setAdmin] = useState<boolean>(false);
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [auth, setAuth] = useState<boolean>(false);
+
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
@@ -25,11 +26,12 @@ export default function Header() {
         withCredentials: true,
       });
       const isAdmin = response?.data?.user.isAdmin;
-      console.log("isadmin:", isAdmin);
       if (isAdmin === true) {
         setAdmin(true);
+        setAuth(true);
       } else {
         setAdmin(false);
+        setAuth(false);
       }
     } catch (error) {
       console.log(error);
@@ -45,6 +47,19 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  async function handleLogout() {
+    try {
+      const response = await api.get("/api/auth/signout");
+      if (response.status === 200) {
+        setAuth(false);
+        setAdmin(false);
+        return router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,7 +154,15 @@ export default function Header() {
                       <Link href="/dashboard">Dashboard</Link>
                     </Button>
                   ) : null}
-                  <Button variant="destructive">Logout</Button>
+                  {auth ? (
+                    <Button onClick={handleLogout} variant="destructive">
+                      Logout
+                    </Button>
+                  ) : (
+                    <Button asChild variant="outline">
+                      <Link href="/login">Login</Link>
+                    </Button>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
