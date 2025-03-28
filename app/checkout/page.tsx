@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CheckoutForm from "@/components/CheckoutForm";
-import axios from "axios";
+import { api } from "@/lib/utils";
 
 async function testPay() {
   const email = "admin@gmail.com";
@@ -12,13 +12,7 @@ async function testPay() {
     amount,
   };
   try {
-    const response = await axios.post(
-      "http://localhost:4001/api/pay/initialize-payment",
-      data,
-      {
-        withCredentials: false,
-      }
-    );
+    const response = await api.post("/api/pay/initialize-payment", data);
     if (response.status === 200) {
       window.location.href = response.data?.data?.authorization_url;
     }

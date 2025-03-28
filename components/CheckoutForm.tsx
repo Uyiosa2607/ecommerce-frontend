@@ -42,7 +42,7 @@ export default function CheckoutForm() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="address">amount</Label>
-            <Input id="amount" name="amount" />
+            <Input id="amount" name="amount" required />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
