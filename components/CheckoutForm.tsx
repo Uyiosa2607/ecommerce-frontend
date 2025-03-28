@@ -5,21 +5,26 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { api } from "@/lib/utils";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function CheckoutForm() {
+  const [loading, setLoading] = useState<boolean>(false);
   async function testPay(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const amount = formData.get("amount");
+
     const data = {
       email,
       amount,
     };
     try {
+      setLoading(true);
       const response = await api.post("/api/pay/initialize-payment", data);
       if (response.status === 200) {
+        setLoading(false);
         window.location.href = response.data?.data?.authorization_url;
       }
       console.log(response.data?.data?.authorization_url);
@@ -61,7 +66,8 @@ export default function CheckoutForm() {
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full">
-            Place Order
+            Place Order{" "}
+            {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
           </Button>
         </CardFooter>
       </Card>
