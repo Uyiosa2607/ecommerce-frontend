@@ -25,6 +25,7 @@ export default function PaymentStatus() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
+      <p className="mb-4">Confirm payment page</p>
       <h2 className="text-2xl">{status}</h2>
     </div>
   );

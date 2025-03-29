@@ -2,25 +2,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CheckoutForm from "@/components/CheckoutForm";
-import { api } from "@/lib/utils";
-
-async function testPay() {
-  const email = "admin@gmail.com";
-  const amount = 200;
-  const data = {
-    email,
-    amount,
-  };
-  try {
-    const response = await api.post("/api/pay/initialize-payment", data);
-    if (response.status === 200) {
-      window.location.href = response.data?.data?.authorization_url;
-    }
-    console.log(response.data?.data?.authorization_url);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export default function CheckoutPage() {
   return (
