@@ -10,6 +10,7 @@ import { Loader2 } from "lucide-react";
 
 export default function CheckoutForm() {
   const [loading, setLoading] = useState<boolean>(false);
+
   async function testPay(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -29,6 +30,7 @@ export default function CheckoutForm() {
       }
       console.log(response.data?.data?.authorization_url);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -47,7 +49,7 @@ export default function CheckoutForm() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="address">amount</Label>
-            <Input id="amount" name="amount" required />
+            <Input id="amount" type="number" name="amount" required />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
@@ -66,7 +68,7 @@ export default function CheckoutForm() {
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full">
-            Place Order{" "}
+            Place Order
             {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
           </Button>
         </CardFooter>

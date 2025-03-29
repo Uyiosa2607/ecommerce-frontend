@@ -26,7 +26,6 @@ api.interceptors.response.use(
         (status === 403 && !originalRequest._retry)
       ) {
         originalRequest._retry = true;
-        console.log("403 detected. Attempting token refresh...");
         try {
           const success = await axios.get(
             "https://shopping-backend-server.onrender.com/api/auth/refresh-token",
@@ -35,11 +34,9 @@ api.interceptors.response.use(
             }
           );
           if (success.status === 200) {
-            console.log("Tokens were refreshed. Retrying original request...");
             return api(originalRequest);
           }
         } catch (error) {
-          console.log("Token refresh failed. Redirecting to login.");
           window.location.href = "/login";
           return Promise.reject(error);
         }

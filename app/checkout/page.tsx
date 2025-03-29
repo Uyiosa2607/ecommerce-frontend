@@ -29,12 +29,6 @@ export default function CheckoutPage() {
       <main className="flex-grow container mx-auto px-4 py-12">
         <h1 className="text-3xl font-semibold mb-8">Checkout</h1>
         <CheckoutForm />
-        <button
-          onClick={testPay}
-          className="my-4 w-fit py-1 px-2 bg-green-600 flex place-self-center text-white"
-        >
-          Pay now
-        </button>
       </main>
       <Footer />
     </div>
