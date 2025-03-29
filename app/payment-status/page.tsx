@@ -1,11 +1,11 @@
 "use client";
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/utils";
 
-export default function PaymentStatusContent() {
+function PaymentStatusContent() {
   const [status, setStatus] = useState("");
-
   const searchParams = useSearchParams();
   const router = useRouter();
   const reference = searchParams.get("reference");
@@ -28,5 +28,13 @@ export default function PaymentStatusContent() {
       <p className="mb-4">Confirm payment page</p>
       <h2 className="text-2xl">{status}</h2>
     </div>
+  );
+}
+
+export default function PaymentStatus() {
+  return (
+    <Suspense fallback={<p>Loading payment status...</p>}>
+      <PaymentStatusContent />
+    </Suspense>
   );
 }
