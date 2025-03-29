@@ -9,12 +9,15 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { api } from "@/lib/utils";
+import { useCartStore } from "@/lib/store";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [admin, setAdmin] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
+
+  const { cart } = useCartStore();
 
   const pathname = usePathname();
   const router = useRouter();
@@ -172,7 +175,7 @@ export default function Header() {
                   }`}
                 />
                 <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                  3
+                  {cart.length.toString()}
                 </span>
               </Link>
             </Button>

@@ -3,12 +3,14 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
+import { useCartStore } from "@/lib/store";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   img: string;
+  quantity: number;
 }
 
 interface ProductGridProps {
@@ -18,6 +20,7 @@ interface ProductGridProps {
 
 export default function ProductGrid({ products, loading }: ProductGridProps) {
   const elements = Array.from({ length: 5 });
+  const { addToCart } = useCartStore();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,7 +65,10 @@ export default function ProductGrid({ products, loading }: ProductGridProps) {
                     </h2>
                   </Link>
                   <p className="text-gray-600 mb-4">${product.price}</p>
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                  <Button
+                    onClick={() => addToCart(product)}
+                    className="w-full bg-purple-600 hover:bg-purple-700"
+                  >
                     Add to Cart
                   </Button>
                 </CardFooter>
