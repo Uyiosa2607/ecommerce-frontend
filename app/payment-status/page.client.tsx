@@ -3,7 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/utils";
 
-export default function PaymentStatus() {
+export default function PaymentStatusContent() {
   const [status, setStatus] = useState("");
 
   const searchParams = useSearchParams();
