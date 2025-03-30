@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import { api } from "@/lib/utils";
 
 function PaymentStatusContent() {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState(
+    "Please wait while payment is being confirmed...."
+  );
   const searchParams = useSearchParams();
   const router = useRouter();
   const reference = searchParams.get("reference");
@@ -14,8 +16,8 @@ function PaymentStatusContent() {
     if (reference) {
       api
         .get(`/api/pay/verify-payment/${reference}`)
-        .then((res) => {
-          setStatus(res.data.message);
+        .then(() => {
+          setStatus("Payment verification was successfull");
         })
         .catch(() => {
           setStatus("Payment verification failed");
