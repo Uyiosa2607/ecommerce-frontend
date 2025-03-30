@@ -20,6 +20,7 @@ export default function CheckoutForm() {
     const data = {
       email,
       amount,
+      metadata: [],
     };
     try {
       setLoading(true);
