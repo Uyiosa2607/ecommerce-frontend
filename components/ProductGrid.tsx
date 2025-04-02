@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// import { Card, CardContent, CardFooter } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
-import { useCartStore } from "@/lib/store";
+// import { useCartStore } from "@/lib/store";
 
 interface Product {
   id: string;
@@ -26,7 +26,7 @@ export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const elements = Array.from({ length: 8 });
-  const { addToCart } = useCartStore();
+  // const { addToCart } = useCartStore();
 
   async function getProducts() {
     try {
