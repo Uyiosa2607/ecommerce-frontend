@@ -111,7 +111,7 @@ export default function Home() {
           <p>news later</p>
         </section>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
