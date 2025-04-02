@@ -1,3 +1,6 @@
+"use client";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -7,23 +10,43 @@ import { useCartStore } from "@/lib/store";
 
 interface Product {
   id: string;
-  name: string;
+  image: string;
+  title: string;
   price: number;
-  img: string;
+  category: string;
   quantity: number;
 }
 
-interface ProductGridProps {
-  products: Product[];
-  loading: boolean;
-}
+// interface ProductGridProps {
+//   products: Product[];
+//   loading: boolean;
+// }
 
-export default function ProductGrid({ products, loading }: ProductGridProps) {
-  const elements = Array.from({ length: 5 });
+export default function ProductGrid() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const elements = Array.from({ length: 8 });
   const { addToCart } = useCartStore();
 
+  async function getProducts() {
+    try {
+      const response = await axios.get("https://fakestoreapi.com/products");
+      if (response.status === 200) {
+        console.log(response.data);
+        setLoading(false);
+        return response.data.slice(0, 8);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 w-full  mt-10 bg-white sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <>
         {loading ? (
           <>
@@ -38,41 +61,37 @@ export default function ProductGrid({ products, loading }: ProductGridProps) {
           <>
             {" "}
             {products.map((product) => (
-              <Card
+              <div
                 key={product.id}
-                className="overflow-hidden group hover:shadow-lg transition-shadow duration-300"
+                className="overflow-hidden bg-gray-50 w-full p-2 rounded-lg group-hover:shadow-lg transition-shadow duration-300"
               >
-                <CardContent className="p-0 relative">
+                <div className="relative ">
                   <Link href={`/products/${product.id}`}>
                     <Image
-                      src={product.img[0]}
-                      alt={product.name}
+                      src={product.image}
+                      alt={product.title}
                       width={300}
                       height={300}
                       quality={100}
-                      className="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-[140px] lg:h-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300" />
                   </Link>
-                </CardContent>
-                <CardFooter className="flex flex-col items-start p-4">
+                </div>
+                <div className="flex mt-2 w-ful  flex-col items-start">
                   <Link
                     href={`/products/${product.id}`}
                     className="hover:text-purple-600 transition-colors"
                   >
-                    <h2 className="text-sm truncate w-[100%] font-semibold text-gray-800 mb-2">
-                      {product.name}
-                    </h2>
+                    <p className="text-xs lg:text-sm relative w-full truncate font-medium text-gray-800">
+                      {product.title}
+                    </p>
                   </Link>
-                  <p className="text-gray-600 mb-4">${product.price}</p>
-                  <Button
-                    onClick={() => addToCart(product)}
-                    className="w-full bg-purple-600 hover:bg-purple-700"
-                  >
-                    Add to Cart
-                  </Button>
-                </CardFooter>
-              </Card>
+                  <p className="text-gray-800 font-semibold text-sm">
+                    ${product.price}
+                  </p>
+                </div>
+              </div>
             ))}
           </>
         )}

@@ -1,70 +1,91 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const bannerItems = [
   {
     id: 1,
     title: "Summer Tech Sale",
     description: "Up to 50% off on selected items",
-    image: "/placeholder.svg?height=400&width=1200",
-    link: "/products"
+    image: "/banner.jpg",
+    link: "/products",
   },
   {
     id: 2,
     title: "New Arrivals",
     description: "Check out our latest gadgets",
-    image: "/placeholder.svg?height=400&width=1200",
-    link: "/products"
+    image: "/banner.jpg",
+    link: "/products",
   },
   {
     id: 3,
     title: "Limited Time Offer",
     description: "Free shipping on orders over $500",
-    image: "/placeholder.svg?height=400&width=1200",
-    link: "/products"
-  }
-]
+    image: "/banner.jpg",
+    link: "/products",
+  },
+];
 
 export default function SlidableBanner() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % bannerItems.length)
-  }
+    setCurrentSlide((prev) => (prev + 1) % bannerItems.length);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + bannerItems.length) % bannerItems.length)
-  }
+    setCurrentSlide(
+      (prev) => (prev - 1 + bannerItems.length) % bannerItems.length
+    );
+  };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000) // Auto-slide every 5 seconds
-    return () => clearInterval(timer)
-  }, [])
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="relative w-full h-[400px] overflow-hidden">
+    <div className="relative w-full h-[240px]  md:h-[400px] overflow-hidden">
+      <div className="hidden md:flex sticky z-[100] w-full text-white p-2 text-sm capitalize flex-row justify-between items-center">
+        <div className="flex flex-row gap-8 items-center">
+          <h3>Brand Logo</h3>
+          <div className="flex gap-8 flex-row items-center">
+            <p>categories</p>
+            <p>collections</p>
+            <p>blog</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex flex-row  gap-8 items-center">
+            <p>search</p>
+            <p>cart</p>
+            <p>login</p>
+          </div>
+        </div>
+      </div>
       {bannerItems.map((item, index) => (
         <div
           key={item.id}
           className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+            index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
           <Image
             src={item.image}
             alt={item.title}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white">
-              <h2 className="text-4xl font-bold mb-4">{item.title}</h2>
-              <p className="text-xl mb-6">{item.description}</p>
-              <Button asChild size="lg" variant="secondary">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4">
+                {item.title}
+              </h2>
+              <p className="text-base md:text-xl mb-6">{item.description}</p>
+              <Button asChild variant="secondary">
                 <a href={item.link}>Shop Now</a>
               </Button>
             </div>
@@ -88,6 +109,5 @@ export default function SlidableBanner() {
         <ChevronRight className="h-8 w-8" />
       </Button>
     </div>
-  )
+  );
 }
-
