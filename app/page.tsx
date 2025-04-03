@@ -137,36 +137,36 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="relative mt-8 lg:mt-20">
-          <div className="absolute top-[30%] text-white w-full left-0 z-[50] ">
-            <h3 className="font-medium mb-1.5 text-2xl lg:text-3xl text-center">
-              Sign Up to Our Newsletter
-            </h3>
-            <p className="text-sm text-center">
-              Get the Latest secrets and trends, Sign Up for Our Newsletter and
-              Stay Informed About All things Beauty
-            </p>
-            <div className="flex w-full mt-4 justify-center gap-2 lg:gap-4 items-center flex-row">
-              <input
-                placeholder="Your email"
-                className="w-[220px] bg-transparent border border-1 border-white text-white text-sm py-1.5 px-2 rounded-lg"
-                type="text"
-              />
-              <Button
-                size={"sm"}
-                className="bg-white text-xs font-medium rounded-lg text-neutral-900"
-              >
-                Submit
-              </Button>
-            </div>
-          </div>
-          <img
-            src="/group-photo.jpg"
-            className="h-[340px] w-full object-cover brightness-50"
-            alt="contact us image"
-          />
-        </section>
       </main>
+      <section className="relative mt-8 lg:mt-20">
+        <div className="absolute top-[30%] text-white w-full left-0 z-[50] ">
+          <h3 className="font-medium mb-1.5 text-2xl lg:text-3xl text-center">
+            Sign Up to Our Newsletter
+          </h3>
+          <p className="text-sm text-center">
+            Get the Latest secrets and trends, Sign Up for Our Newsletter and
+            Stay Informed About All things Beauty
+          </p>
+          <div className="flex w-full mt-4 justify-center gap-2 lg:gap-4 items-center flex-row">
+            <input
+              placeholder="Your email"
+              className="w-[220px] lg:w-[480px] bg-transparent border border-1 border-white text-white text-sm py-1.5 px-2 rounded-lg"
+              type="text"
+            />
+            <Button
+              size={"sm"}
+              className="bg-white hover:text-white border hover:bg-transparent hover:border-white hover:border-1 text-xs font-medium rounded-lg text-neutral-900"
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
+        <img
+          src="/group-photo.jpg"
+          className="h-[340px] w-full object-cover brightness-50"
+          alt="contact us image"
+        />
+      </section>
       <Footer />
     </div>
   );
