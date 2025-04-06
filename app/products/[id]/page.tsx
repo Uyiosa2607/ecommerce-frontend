@@ -16,3 +16,11 @@
 //     </div>
 //   );
 // }
+
+export default function ProductDetails() {
+  return (
+    <main>
+      <p>details page</p>
+    </main>
+  );
+}
