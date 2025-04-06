@@ -49,23 +49,6 @@ export default function SlidableBanner() {
 
   return (
     <div className="relative w-full h-[240px]  md:h-[400px] overflow-hidden">
-      <div className="hidden md:flex sticky z-[100] w-full text-white p-2 text-sm capitalize flex-row justify-between items-center">
-        <div className="flex flex-row gap-8 items-center">
-          <h3>Brand Logo</h3>
-          <div className="flex gap-8 flex-row items-center">
-            <p>categories</p>
-            <p>collections</p>
-            <p>blog</p>
-          </div>
-        </div>
-        <div>
-          <div className="flex flex-row  gap-8 items-center">
-            <p>search</p>
-            <p>cart</p>
-            <p>login</p>
-          </div>
-        </div>
-      </div>
       {bannerItems.map((item, index) => (
         <div
           key={item.id}

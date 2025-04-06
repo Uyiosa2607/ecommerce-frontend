@@ -24,7 +24,7 @@ export default function CheckoutForm() {
     };
     try {
       setLoading(true);
-      const response = await api.post("/api/pay/initialize-payment", data);
+      const response = await api.post("/api/v1/pay/initialize-payment", data);
       if (response.status === 200) {
         setLoading(false);
         window.location.href = response.data?.data?.authorization_url;

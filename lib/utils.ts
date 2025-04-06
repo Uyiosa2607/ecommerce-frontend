@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const api = axios.create({
-  baseURL: "https://shopping-backend-server.onrender.com",
+  baseURL: "https://shopping-backend-server-1.onrender.com",
   withCredentials: true,
 });
 
@@ -28,7 +28,7 @@ api.interceptors.response.use(
         originalRequest._retry = true;
         try {
           const success = await axios.get(
-            "https://shopping-backend-server.onrender.com/api/auth/refresh-token",
+            "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
             {
               withCredentials: true,
             }
