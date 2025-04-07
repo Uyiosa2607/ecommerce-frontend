@@ -31,10 +31,13 @@ export default function ProductGrid() {
 
   async function getProducts() {
     try {
-      const res = await fetch("http://localhost:4001/api/v1/auth/auth-status", {
-        method: "GET",
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Not authenticated");
