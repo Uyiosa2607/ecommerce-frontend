@@ -28,7 +28,7 @@ api.interceptors.response.use(
         originalRequest._retry = true;
         try {
           const success = await axios.get(
-            "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
+            "https://shopping-backend-server-1.onrender.com/api/v1/auth/refresh-token",
             {
               withCredentials: true,
             }

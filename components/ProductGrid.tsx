@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 // import { Card, CardContent, CardFooter } from "@/components/ui/card";
 // import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -30,19 +31,24 @@ export default function ProductGrid() {
 
   async function getProducts() {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
-      if (response.status === 200) {
-        console.log(response.data);
-        setLoading(false);
-        return response.data.slice(0, 8);
+      const res = await fetch("http://localhost:4001/api/v1/auth/auth-status", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("Not authenticated");
       }
-    } catch (error) {
-      console.log(error);
+
+      const data = await res.json();
+      console.log("User is authenticated:", data.user);
+    } catch (err) {
+      console.log(err);
     }
   }
 
   useEffect(() => {
-    getProducts().then(setProducts);
+    getProducts();
   }, []);
 
   return (
