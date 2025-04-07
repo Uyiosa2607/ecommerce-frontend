@@ -39,7 +39,7 @@ export default function Register() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:4001/api/auth/register",
+        "https://shopping-backend-server-1.onrender.com/api/v1/auth/register",
         data
       );
       if (response.status === 201) {
