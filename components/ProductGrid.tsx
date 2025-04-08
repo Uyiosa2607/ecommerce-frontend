@@ -33,7 +33,7 @@ export default function ProductGrid() {
         console.log(response.data);
         setLoading(false);
         await axios.get(
-          "https://shopping-backend-server-1.onrender.com/ap1/v1/auth/auth-status",
+          "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
           { withCredentials: true }
         );
         return response.data.slice(0, 8);
