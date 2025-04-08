@@ -30,7 +30,8 @@ export default function Login() {
 
       const response = await axios.post(
         "https://shopping-backend-server-1.onrender.com/api/v1/auth/login",
-        data
+        data,
+        { withCredentials: true }
       );
       if (response.status === 200) {
         toast({
