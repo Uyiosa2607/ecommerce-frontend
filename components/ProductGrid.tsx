@@ -27,15 +27,15 @@ export default function ProductGrid() {
   const elements = Array.from({ length: 8 });
 
   async function getProducts() {
+    axios.get(
+      "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
+      { withCredentials: true }
+    );
     try {
       const response = await axios.get("https://fakestoreapi.com/products");
       if (response.status === 200) {
         console.log(response.data);
         setLoading(false);
-        await axios.get(
-          "https://shopping-backend-server-1.onrender.com/api/v1/auth/auth-status",
-          { withCredentials: true }
-        );
         return response.data.slice(0, 8);
       }
     } catch (error) {
