@@ -1,30 +1,42 @@
+import { CircleUser, Menu, Search, ShoppingBag } from "lucide-react";
+import Link from "next/link";
+
 export default function Header() {
   return (
     <header className="mb-14">
-      <div className="w-[90%] mx-auto">
-        <div className="hidden  p-2 text-xs lg:text-sm justify-center font-medium items-center gap-4 flex-row">
-          <p>
-            New Season Coming! Discount 10% for all products! check out now!
-          </p>
-          {/* <button className="bg-neutral-950 rounded-md text-white text-xs px-1 py-1.5">
-            20:48
-          </button> */}
-        </div>
-        <div className="hidden  bg-white fixed top-0 left-0  md:flex z-[100] w-full text-black font-medium px-2 py-4 text-sm capitalize flex-row justify-between items-center">
+      <div className="w-full fixed top-0 left-0 mx-auto">
+        <div className="bg-stone-100 flex md:flex z-[100] w-full text-black font-medium px-2 py-4 text-sm capitalize flex-row justify-between items-center">
           <div className="flex flex-row gap-8 items-center">
-            <h3>Brand Logo</h3>
-            <div className="flex gap-8 flex-row items-center">
+            <Link href="/">
+              <h3 className="text-lg font-semibold">Brand Logo</h3>
+            </Link>
+            <div className="hidden lg:flex font-semibold gap-8 flex-row items-center">
               <p>categories</p>
               <p>collections</p>
               <p>blog</p>
             </div>
           </div>
-          <div>
-            <div className="flex flex-row  gap-8 items-center">
-              <p>search</p>
-              <p>cart</p>
-              <p>login</p>
+
+          <div className="flex flex-row items-center">
+            <div className="hidden lg:flex flex-row font-semibold  gap-8 items-center">
+              <div className="flex items-center gap-1 flex-row">
+                <Search size={18} />
+                <p>search</p>
+              </div>
+              <Link href="/cart">
+                <div className="flex items-center gap-1 flex-row">
+                  <ShoppingBag size={18} />
+                  <p>cart</p>
+                </div>
+              </Link>
+              <Link href="/login">
+                <div className="flex flex-row items-center gap-1">
+                  <CircleUser size={18} />
+                  <p>login</p>
+                </div>
+              </Link>
             </div>
+            <Menu className="lg:hidden" size={30} />
           </div>
         </div>
       </div>
