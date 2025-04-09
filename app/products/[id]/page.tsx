@@ -8,7 +8,7 @@ export default function ProductDetails() {
       <Header />
       <main className="px-2.5 min-h-[80vh]">
         <div className="flex mx-auto lg:w-[80%] gap lg:gap-10 flex-col lg:flex-row">
-          <div className="flex-[2] mb-4 gap-2 flex flex-col ">
+          <div className="flex-[2] mb-1 lg:mb-4 gap-2 flex flex-col ">
             <div className="flex-1">
               <Image
                 alt="shoes"
@@ -16,7 +16,7 @@ export default function ProductDetails() {
                 height={1500}
                 quality={100}
                 src="/jordan.jpg"
-                className="h-[400px] lg:h-[500px] rounded-xl w-full object-cover"
+                className="h-[300px] lg:h-[500px] rounded-xl w-full object-cover"
               />
             </div>
             <div className="flex flex-row  gap-2">
@@ -26,7 +26,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="w-[100px] object-cover rounded-lg h-[100px]"
+                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
               />
               <Image
                 alt="shoes"
@@ -34,7 +34,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="w-[100px] object-cover rounded-lg h-[100px]"
+                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
               />
               <Image
                 alt="shoes"
@@ -42,7 +42,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="w-[100px] object-cover rounded-lg h-[100px]"
+                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
               />
               <Image
                 alt="shoes"
@@ -50,13 +50,17 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="w-[100px] object-cover rounded-lg h-[100px]"
+                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
               />
             </div>
           </div>
           <div className="flex-[1.6]">
-            <h3 className="text-3xl font-semibold mb-2.5">Boa flece Jacket</h3>
-            <p className="text-4xl mb-4 font-[700]">$122.00</p>
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-1.5 lg:mb-2.5">
+              Boa flece Jacket
+            </h3>
+            <p className="text-2xl mb-1.5 lg:text-4xl lg:mb-4 font-[700]">
+              $122.00
+            </p>
             <p className="text-base mb-1 font-[800]">Descriptions</p>
             <p className="text-base  mb-2 font-[500]">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -96,18 +100,20 @@ export default function ProductDetails() {
         </div>
         <div className="lg:w-[80%] mt-8 mb-4 mx-auto">
           <h3 className="text-2xl font-semibold mb-4">You may also like</h3>
-          <div className="grid gap-y-4 grid-cols-2 justify-items-center lg:justify-items-start lg:grid-cols-4">
+          <div className="grid gap-y-4  grid-cols-2 justify-items-center lg:justify-items-start lg:grid-cols-4">
             <div className="w-[180px]">
               <Image
                 width={500}
                 height={500}
-                className="h-[200px] object-cover rounded-tr-md rounded-tl-md w-[180px]"
+                className="lg:h-[200px] h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
                 src="/jacket.jpg"
                 alt="shirt"
               />
               <div>
-                <p className="text-base font-semibold">T Shirt</p>
-                <p className="text-base font-[500]">Round collar T Shirt</p>
+                <p className="lg:text-base text-sm font-semibold">T Shirt</p>
+                <p className="lg:text-base text-sm font-[500]">
+                  Round collar T Shirt
+                </p>
                 <p className="font-[600]">$60</p>
               </div>
             </div>
@@ -116,13 +122,15 @@ export default function ProductDetails() {
               <Image
                 width={500}
                 height={500}
-                className="h-[200px] object-cover rounded-tr-md rounded-tl-md w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
                 src="/jacket.jpg"
                 alt="shirt"
               />
               <div>
-                <p className="text-base font-semibold">T Shirt</p>
-                <p className="text-base font-[500]">Round collar T Shirt</p>
+                <p className="lg:text-base text-sm font-semibold">T Shirt</p>
+                <p className="lg:text-base text-sm font-[500]">
+                  Round collar T Shirt
+                </p>
                 <p className="font-[600]">$60</p>
               </div>
             </div>
@@ -131,13 +139,15 @@ export default function ProductDetails() {
               <Image
                 width={500}
                 height={500}
-                className="h-[200px] object-cover rounded-tr-md rounded-tl-md w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
                 src="/jacket.jpg"
                 alt="shirt"
               />
               <div>
-                <p className="text-base font-semibold">T Shirt</p>
-                <p className="text-base font-[500]">Round collar T Shirt</p>
+                <p className="lg:text-base text-sm font-semibold">T Shirt</p>
+                <p className="lg:text-base text-sm font-[500]">
+                  Round collar T Shirt
+                </p>
                 <p className="font-[600]">$60</p>
               </div>
             </div>
@@ -146,13 +156,15 @@ export default function ProductDetails() {
               <Image
                 width={500}
                 height={500}
-                className="h-[200px] object-cover rounded-tr-md rounded-tl-md w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
                 src="/jacket.jpg"
                 alt="shirt"
               />
               <div>
-                <p className="text-base font-semibold">T Shirt</p>
-                <p className="text-base font-[500]">Round collar T Shirt</p>
+                <p className="lg:text-base text-sm font-semibold">T Shirt</p>
+                <p className="lg:text-base text-sm font-[500]">
+                  Round collar T Shirt
+                </p>
                 <p className="font-[600]">$60</p>
               </div>
             </div>
