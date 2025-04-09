@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="mb-14">
+    <header className="mb-14 z-[200]">
       <div className="w-full fixed top-0 left-0 mx-auto">
-        <div className="bg-stone-100 flex md:flex z-[100] w-full text-black font-medium px-2 py-2 lg:py-4 text-sm capitalize flex-row justify-between items-center">
+        <div className="bg-stone-100 flex md:flex w-full text-black font-medium px-2 py-2 lg:py-4 text-sm capitalize flex-row justify-between items-center">
           <div className="flex flex-row gap-8 items-center">
             <Link href="/">
               <h3 className="text-lg font-semibold">Brand Logo</h3>
