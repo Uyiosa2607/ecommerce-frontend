@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ProductDetails() {
   return (
-    <div>
+    <div className="text-gray-800">
       <Header />
       <main className="px-2.5 min-h-[80vh]">
         <div className="flex mx-auto lg:w-[80%] gap lg:gap-10 flex-col lg:flex-row">
@@ -26,7 +26,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
+                className="lg:w-[80px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[80px]"
               />
               <Image
                 alt="shoes"
@@ -34,7 +34,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
+                className="lg:w-[80px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[80px]"
               />
               <Image
                 alt="shoes"
@@ -42,7 +42,7 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
+                className="lg:w-[80px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[80px]"
               />
               <Image
                 alt="shoes"
@@ -50,19 +50,19 @@ export default function ProductDetails() {
                 height={160}
                 quality={100}
                 src="/jordan.jpg"
-                className="lg:w-[60px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[100px]"
+                className="lg:w-[80px] w-[70px] object-cover rounded-lg h-[60px] lg:h-[80px]"
               />
             </div>
           </div>
           <div className="flex-[1.6]">
-            <h3 className="text-2xl lg:text-3xl font-semibold mb-1.5 lg:mb-2.5">
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-1.5 lg:mb-1.5">
               Boa flece Jacket
             </h3>
-            <p className="text-2xl mb-1.5 lg:text-4xl lg:mb-4 font-[700]">
+            <p className="text-2xl mb-1.5 lg:text-4xl lg:mb-2 font-[700]">
               $122.00
             </p>
-            <p className="text-base mb-1 font-[800]">Descriptions</p>
-            <p className="text-base  mb-2 font-[500]">
+            <p className="text-base mb-1 lg:mb-0 font-[700]">Descriptions</p>
+            <p className="text-base  mb-2 font-[400]">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Doloremque exercitationem assumenda maxime alias rem porro fuga
               suscipit, esse corrupti ipsam adipisci voluptatem nostrum,
@@ -70,7 +70,9 @@ export default function ProductDetails() {
               reprehenderit temporibus iste impedit pariatur veniam dolore
               tempora velit?
             </p>
-            <h3 className="text-base mb-2 font-[800]">Avaliable color</h3>
+            <h3 className="text-base mb-2 lg:mb-1.5 font-[700]">
+              Avaliable color
+            </h3>
             <div className="flex mb-2 items-center flex-row gap-1.5 rounded-lg">
               <div className="w-8 h-8 border border-1 border-black rounded-lg bg-black"></div>
               <div className="w-8 h-8 border border-1 border-black rounded-lg bg-green-900"></div>
@@ -99,13 +101,15 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="lg:w-[80%] mt-8 mb-4 mx-auto">
-          <h3 className="text-2xl font-semibold mb-4">You may also like</h3>
-          <div className="grid gap-y-4  grid-cols-2 justify-items-center lg:justify-items-start lg:grid-cols-4">
-            <div className="w-[180px]">
+          <h3 className="text-xl lg:text-2xl font-[600] mb-4">
+            You may also like
+          </h3>
+          <div className="grid gap-y-4 gap-x-4 lg:gap-x-8 grid-cols-2 justify-items-center lg:justify-items-start lg:grid-cols-4">
+            <div className="w-full lg:w-full">
               <Image
                 width={500}
                 height={500}
-                className="lg:h-[200px] h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
+                className="lg:h-[200px] h-[160px] object-cover rounded-tr-md rounded-tl-md w-full lg:w-full"
                 src="/jacket.jpg"
                 alt="shirt"
               />
@@ -118,11 +122,11 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <div className="w-[180px]">
+            <div className="w-full lg:w-full">
               <Image
                 width={500}
                 height={500}
-                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-full lg:w-full"
                 src="/jacket.jpg"
                 alt="shirt"
               />
@@ -135,11 +139,11 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <div className="w-[180px]">
+            <div className="w-full lg:w-full">
               <Image
                 width={500}
                 height={500}
-                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-full lg:w-full"
                 src="/jacket.jpg"
                 alt="shirt"
               />
@@ -152,11 +156,11 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <div className="w-[180px]">
+            <div className="w-full lg:w-full">
               <Image
                 width={500}
                 height={500}
-                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-[150px] lg:w-[180px]"
+                className="lg:h-[200px]  h-[160px] object-cover rounded-tr-md rounded-tl-md w-full lg:w-full"
                 src="/jacket.jpg"
                 alt="shirt"
               />
